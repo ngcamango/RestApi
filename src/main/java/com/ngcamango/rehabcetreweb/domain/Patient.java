@@ -30,7 +30,15 @@ public class Patient implements Serializable {
     private String surname;
     private int age;
     @Embedded
+    private Registration registrationFee;
+    @Embedded
+    private Admission admission;
+    @Embedded
+    private Discharge discharge;
+    @Embedded
     private Treatment treatmnt;
+    @Embedded
+    private Diet diet;
     @OneToMany
     @JoinColumn(name="patient_id")
     private List<ActivityLog> activity;
@@ -46,7 +54,11 @@ public class Patient implements Serializable {
         name=builder.name;
         surname= builder.surname;
         age=builder.age;
+        registrationFee=builder.registrationFee;
+        admission=builder.admission;
+        discharge=builder.discharge;
         treatmnt=builder.treatmnt;
+        diet=builder.diet;
         activity=builder.activity;
     }
     
@@ -56,7 +68,11 @@ public class Patient implements Serializable {
         private String name;
         private String surname;
         private int age;
+        private Registration registrationFee;
+        private Admission admission;
+        private Discharge discharge;
         private Treatment treatmnt;
+        private Diet diet;
         private List<ActivityLog> activity;
         
         public Builder(String name) {
@@ -78,8 +94,28 @@ public class Patient implements Serializable {
             return this;
         }
         
+        public Builder registrationFee(Registration value){
+            registrationFee=value;
+            return this;
+        }
+        
+        public Builder admission(Admission value){
+            admission=value;
+            return this;
+        }
+        
+        public Builder discharge(Discharge value){
+            discharge=value;
+            return this;
+        }
+        
         public Builder treatmnt(Treatment value){
             treatmnt=value;
+            return this;
+        }
+        
+        public Builder diet(Diet value){
+            diet=value;
             return this;
         }
         
@@ -93,7 +129,11 @@ public class Patient implements Serializable {
             name=value.getName();
             surname= value.getSurname();
             age=value.getAge();
+            registrationFee=value.getRegistrationFee();
+            admission=value.getAdmission();
+            discharge=value.getDischarge();
             treatmnt=value.getTreatmnt();
+            diet=value.getDiet();
             activity=value.getActivity();
             return this;
         }
@@ -120,8 +160,24 @@ public class Patient implements Serializable {
         return age;
     }
 
+    public Registration getRegistrationFee() {
+        return registrationFee;
+    }
+
+    public Admission getAdmission() {
+        return admission;
+    }
+
+    public Discharge getDischarge() {
+        return discharge;
+    }
+
     public Treatment getTreatmnt() {
         return treatmnt;
+    }
+    
+    public Diet getDiet() {
+        return diet;
     }
 
     public List<ActivityLog> getActivity() {

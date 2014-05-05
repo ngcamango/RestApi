@@ -7,94 +7,81 @@
 package com.ngcamango.rehabcetreweb.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author ngcamango
  */
 @Entity
-public class Department implements Serializable {
+public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String name; 
-    private String description;
-    @OneToMany
-    @JoinColumn(name="department_id")
-    private List<Ward> wards;
-    @OneToMany
-    @JoinColumn(name="department_id")
-    private List<Nurse> nurses;
+    private String name;
+    private String surname;
+    private int hours;
     
-    private Department(){
+    private Appointment(){
         
     }
     
-    private Department(Builder builder){
+    private Appointment(Builder builder){
         name = builder.name;
-        description = builder.description;
-        wards = builder.wards;
-        nurses = builder.nurses;
+        surname = builder.surname;
+        hours = builder.hours;
     }
     
     public static class Builder{
-        private String name; 
-        private String description;
-        private List<Ward> wards; 
-        private List<Nurse> nurses;
+        private String name;
+        private String surname;
+        private int hours;
         
         public Builder(String name) {
             this.name = name;
         }
 
-        public Builder name(String value){
-            name=value;
+        public Builder surname(String value){
+            surname=value;
             return this;
         }
         
-        public Builder description(String value){
-            description=value;
+        public Builder hours(int value){
+            hours=value;
             return this;
         }
         
-        public Builder wards(List<Ward> value){
-            wards=value;
-            return this;
-        }
-        public Builder nurses(List<Nurse> value){
-            nurses=value;
+        public Builder appointment(Appointment value){
+            name=value.getName();
+            surname= value.getSurname();
+            hours=value.getHours();
             return this;
         }
         
-        public Department build()
+        public Appointment build()
         {
-            return new Department(this);
+            return new Appointment(this);
         }
+    }
+    
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-    
-    public List<Ward> getWards() {
-        return wards;
+    public String getSurname() {
+        return surname;
     }
 
-    public List<Nurse> getNurses() {
-        return nurses;
+    public int getHours() {
+        return hours;
     }
 
     @Override
@@ -107,10 +94,10 @@ public class Department implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Department)) {
+        if (!(object instanceof Appointment)) {
             return false;
         }
-        Department other = (Department) object;
+        Appointment other = (Appointment) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +106,7 @@ public class Department implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ngcamango.rehabcetreweb.domain.Department[ id=" + id + " ]";
+        return "com.ngcamango.rehabcetreweb.domain.Appointment[ id=" + id + " ]";
     }
     
 }
