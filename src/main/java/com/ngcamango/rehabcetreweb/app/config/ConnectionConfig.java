@@ -5,11 +5,10 @@
  */
 package com.ngcamango.rehabcetreweb.app.config;
 
-import com.ngcamango.rehabcetreweb.services.crud.PatientCrudService;
-import com.ngcamango.rehabcetreweb.services.crud.impl.PatientCrudServiceImpl;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -25,8 +24,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author ngcamango
  */
 @Configuration
+@ComponentScan("com.ngcamango.rehabcetreweb")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.ngcamango.rehabcetreweb.respository")
+@EnableJpaRepositories(basePackages = "com.ngcamango.rehabcetreweb.repository")
 public class ConnectionConfig {
     
     @Bean

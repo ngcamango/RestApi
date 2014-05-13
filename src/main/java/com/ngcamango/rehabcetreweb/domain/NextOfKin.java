@@ -36,7 +36,7 @@ public class NextOfKin implements Serializable {
     private String relationship;
     @OneToMany
     @JoinColumn(name="nextofkin_id")
-    private Appointment appointment;
+    private List<Appointment> appointment;
 
     private NextOfKin(){
         
@@ -59,7 +59,7 @@ public class NextOfKin implements Serializable {
         private Bill bill;
         private Address address;
         private String relationship;
-        private Appointment appointment;
+        private List<Appointment> appointment;
         
         public Builder(String name) {
             this.name = name;
@@ -90,7 +90,7 @@ public class NextOfKin implements Serializable {
             return this;
         }
         
-        public Builder appointment(Appointment value){
+        public Builder appointment(List<Appointment> value){
             appointment=value;
             return this;
         }
@@ -140,7 +140,7 @@ public class NextOfKin implements Serializable {
         return relationship;
     }
 
-    public Appointment getAppointment() {
+    public List<Appointment> getAppointment() {
         return appointment;
     }
 

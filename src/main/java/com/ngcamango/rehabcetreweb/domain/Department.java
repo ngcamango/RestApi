@@ -8,6 +8,7 @@ package com.ngcamango.rehabcetreweb.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class Department implements Serializable {
 
     private String name; 
     private String description;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="department_id")
     private List<Ward> wards;
     @OneToMany
@@ -79,6 +80,10 @@ public class Department implements Serializable {
         {
             return new Department(this);
         }
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

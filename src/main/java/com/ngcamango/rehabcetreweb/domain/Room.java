@@ -27,7 +27,7 @@ public class Room implements Serializable {
     
     private int roomNo;
     @Embedded
-    private List<Bed> beds;
+    private Bed beds;
     
     private Room(){
         
@@ -40,13 +40,13 @@ public class Room implements Serializable {
     
     public static class Builder{
         private int roomNo;
-        private List<Bed> beds;
+        private Bed beds;
         
         public Builder(int roomNo){
             this.roomNo = roomNo;
         }
         
-        public Builder beds(List<Bed> beds){
+        public Builder beds(Bed beds){
             this.beds = beds;
             return this;
         }
@@ -71,7 +71,7 @@ public class Room implements Serializable {
         return roomNo;
     }
 
-    public List<Bed> getBeds() {
+    public Bed getBeds() {
         return beds;
     }
 

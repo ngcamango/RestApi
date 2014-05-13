@@ -15,44 +15,26 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Time implements Serializable{
-    private int hr;
-    private int min;
-    private int sec;
+    private int hrs;
 
     private Time(){
         
     }
     
     private Time(Builder builder){
-        hr=builder.hr;
-        min=builder.min;
-        sec=builder.sec;
+        hrs=builder.hrs;
     }
     
     public static class Builder
     {
-        private int hr;
-        private int min;
-        private int sec;
+        private int hrs;
         
-        public Builder(int hr) {
-            this.hr = hr;
-        }
-        
-        public Builder min(int value){
-            min=value;
-            return this;
-        }
-        
-        public Builder sec(int value){
-            sec=value;
-            return this;
+        public Builder(int hrs) {
+            this.hrs = hrs;
         }
         
         public Builder timeElapsed(Time value){
-            hr=value.getHr();
-            min=value.getMin();
-            sec=value.getSec();
+            hrs=value.getHrs();
             return this;
         }
         
@@ -62,17 +44,8 @@ public class Time implements Serializable{
         }
     }
     
-    public int getHr() {
-        return hr;
-    }
-
-    public int getMin() {
-        return min;
-    }
-
-    public int getSec() {
-        return sec;
-    }
-    
+    public int getHrs() {
+        return hrs;
+    }  
     
 }

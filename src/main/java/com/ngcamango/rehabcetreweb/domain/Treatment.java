@@ -15,7 +15,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Treatment implements Serializable{
-    private String diagnosis;
+    //private String diagnosis;
     private String treatment;
     
     private Treatment(){
@@ -23,26 +23,26 @@ public class Treatment implements Serializable{
     }
     
     private Treatment(Builder builder){
-        diagnosis=builder.diagnosis;
+        //diagnosis=builder.diagnosis;
         treatment=builder.treatment;
     }
     
     public static class Builder
     {
-        private String diagnosis;
+        //private String diagnosis;
         private String treatment;
         
-        public Builder(String diagnosis) {
-            this.diagnosis = diagnosis;
+        public Builder(String treatment) {
+            this.treatment = treatment;
         }
         
-        public Builder treatment(String value){
+        /*public Builder treatment(String value){
             treatment=value;
             return this;
-        }
+        }*/
         
         public Builder treatment(Treatment value){
-            diagnosis=value.getDiagnosis();
+            //diagnosis=value.getDiagnosis();
             treatment=value.getTreatment();
             return this;
         }
@@ -53,9 +53,9 @@ public class Treatment implements Serializable{
         }
     }
 
-    public String getDiagnosis() {
+    /*public String getDiagnosis() {
         return diagnosis;
-    }
+    }*/
 
     public String getTreatment() {
         return treatment;

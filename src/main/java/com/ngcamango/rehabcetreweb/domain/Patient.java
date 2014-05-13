@@ -8,12 +8,14 @@ package com.ngcamango.rehabcetreweb.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -39,7 +41,7 @@ public class Patient implements Serializable {
     private Treatment treatmnt;
     @Embedded
     private Diet diet;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_id")
     private List<ActivityLog> activity;
     

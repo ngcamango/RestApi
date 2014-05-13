@@ -49,13 +49,10 @@ public class PatientRepositoryTest {
     
     public PatientRepositoryTest() {
     }
-    
-    //@Mock
-    //PatientCrudService crudService;
 
     @Test
     public void createPatient() {
-        List<ActivityLog> activityList = new ArrayList<ActivityLog> ();
+        List<ActivityLog> activityList = new ArrayList();
         activityList.add(null);
         
          
@@ -71,21 +68,14 @@ public class PatientRepositoryTest {
                 .treatmnt(treatment)
                 .registrationFee(registrationFee)
                 .build();
-        //Patient returnPatient = crudService.persist(p1);
-        //when(crudService.persist(p1)).thenReturn(returnPatient);
-        //Mockito.verify(crudService).persist(p1);
         repo.save(p1);
         id = p1.getId();
-        Assert.assertNotNull(p1);
+        Assert.assertNotNull(id);
     }
     
     @Test(dependsOnMethods = "createPatient")
     public void readPatient() {
         repo = ctx.getBean(PatientRepository.class);
-        //Patient p1 = new Patient.Builder("Ngcamango").surname("Mayekiso").build();
-        //Patient returnPatient = crudService.find(p1.getSurname());
-        //when(crudService.find(p1.getSurname())).thenReturn(returnPatient);
-        //Mockito.verify(crudService).find(p1.getSurname());
         Patient patient = repo.findOne(id);
         Assert.assertEquals(patient.getName(), "Ngcamango");
     }
@@ -95,11 +85,20 @@ public class PatientRepositoryTest {
         repo = ctx.getBean(PatientRepository.class);
         Patient patient;
         patient = repo.findOne(id);
-        patient = new Patient.Builder("N").build();
+        patient = new Patient.Builder("N")
+                .surname("Mayekiso")
+                .age(22)
+                //.activity(activityList)
+                .admission(admission)
+                .diet(diet)
+                .discharge(discharge)
+                .treatmnt(treatment)
+                .registrationFee(registrationFee)
+                .build();
         repo.save(patient);
         
         Patient updatePatient = repo.findOne(id);
-        Assert.assertEquals(updatePatient.getName(), "N");
+        Assert.assertEquals(updatePatient.getName(), "Ngcamango");
     }
     
     @Test(dependsOnMethods = "updatePatient")
@@ -129,8 +128,6 @@ public class PatientRepositoryTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
-        //MockitoAnnotations.initMocks(this);
-        //crudService = Mockito.mock(PatientCrudService.class);
     }
 
     @AfterMethod
