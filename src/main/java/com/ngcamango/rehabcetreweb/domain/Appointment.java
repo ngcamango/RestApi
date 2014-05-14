@@ -22,8 +22,6 @@ public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String surname;
     private int hours;
     
     private Appointment(){
@@ -31,33 +29,17 @@ public class Appointment implements Serializable {
     }
     
     private Appointment(Builder builder){
-        name = builder.name;
-        surname = builder.surname;
         hours = builder.hours;
     }
     
     public static class Builder{
-        private String name;
-        private String surname;
         private int hours;
         
-        public Builder(String name) {
-            this.name = name;
-        }
-
-        public Builder surname(String value){
-            surname=value;
-            return this;
-        }
-        
-        public Builder hours(int value){
-            hours=value;
-            return this;
+        public Builder(int hours) {
+            this.hours = hours;
         }
         
         public Builder appointment(Appointment value){
-            name=value.getName();
-            surname= value.getSurname();
             hours=value.getHours();
             return this;
         }
@@ -70,14 +52,6 @@ public class Appointment implements Serializable {
     
     public Long getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
     }
 
     public int getHours() {
