@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,8 +28,9 @@ public class Room implements Serializable {
     private Long id;
     
     private int roomNo;
-    @Embedded
-    private Bed beds;
+    @OneToMany
+    @JoinColumn(name="room_id")
+    private List<Bed> beds;
     
     private Room(){
         
@@ -40,13 +43,13 @@ public class Room implements Serializable {
     
     public static class Builder{
         private int roomNo;
-        private Bed beds;
+        private List<Bed> beds;
         
         public Builder(int roomNo){
             this.roomNo = roomNo;
         }
         
-        public Builder beds(Bed beds){
+        public Builder beds(List<Bed> beds){
             this.beds = beds;
             return this;
         }
@@ -71,7 +74,7 @@ public class Room implements Serializable {
         return roomNo;
     }
 
-    public Bed getBeds() {
+    public List<Bed> getBeds() {
         return beds;
     }
 

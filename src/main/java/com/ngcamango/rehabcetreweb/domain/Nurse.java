@@ -31,8 +31,9 @@ public class Nurse implements Serializable {
     private int age;
     private double hoursWorked;
     private double salary;
-    @Embedded
-    private Shift shift;
+    @OneToMany
+    @JoinColumn(name="nurse_id")
+    private List<Shift> shift;
     @OneToMany
     @JoinColumn(name="nurse_id")
     private List<Patient> patients;
@@ -62,7 +63,7 @@ public class Nurse implements Serializable {
         private int age;
         private double hoursWorked;
         private double salary;
-        private Shift shift;
+        private List<Shift> shift;
         private List<Patient> patients;
         
         public Builder(double hoursWorked) {
@@ -94,7 +95,7 @@ public class Nurse implements Serializable {
             return this;
         }
         
-        public Builder shift(Shift value){
+        public Builder shift(List<Shift> value){
             shift=value;
             return this;
         }
@@ -146,7 +147,7 @@ public class Nurse implements Serializable {
         return salary;
     }
     
-    public Shift getShift() {
+    public List<Shift> getShift() {
         return shift;
     }
 

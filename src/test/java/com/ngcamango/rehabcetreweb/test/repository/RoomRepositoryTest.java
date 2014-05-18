@@ -10,6 +10,7 @@ import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
 import com.ngcamango.rehabcetreweb.domain.Bed;
 import com.ngcamango.rehabcetreweb.domain.Room;
 import com.ngcamango.rehabcetreweb.repository.RoomRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -28,7 +29,7 @@ import org.testng.annotations.Test;
 public class RoomRepositoryTest {
     public static ApplicationContext ctx;
     private static int roomNo;
-    private static Bed beds;
+    //private static Bed beds;
     private Long id;
     private RoomRepository repo;
     
@@ -37,10 +38,12 @@ public class RoomRepositoryTest {
 
     @Test
     public void createRoom() {
+        List<Bed> bedList = new ArrayList();
+        bedList.add(null);
         
         repo = ctx.getBean(RoomRepository.class);
         Room r1 = new Room.Builder(126)
-                .beds(beds)
+                .beds(bedList)
                 .build();
         repo.save(r1);
         id = r1.getId();
@@ -60,7 +63,7 @@ public class RoomRepositoryTest {
         Room room;
         room = repo.findOne(id);
         room = new Room.Builder(154)
-                .beds(beds)
+                //.beds(bedList)
                 .build();
         repo.save(room);
         
@@ -82,7 +85,7 @@ public class RoomRepositoryTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
-        beds = new Bed.Builder("Single").build();
+        //beds = new Bed.Builder("Single").build();
     }
 
     @AfterClass

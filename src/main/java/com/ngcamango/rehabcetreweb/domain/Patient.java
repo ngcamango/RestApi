@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,16 +32,21 @@ public class Patient implements Serializable {
     private String name;
     private String surname;
     private int age;
-    @Embedded
+    @OneToOne
+    @JoinColumn(name="patient_id")
     private Registration registrationFee;
-    @Embedded
-    private Admission admission;
-    @Embedded
-    private Discharge discharge;
-    @Embedded
+    @OneToMany
+    @JoinColumn(name="patient_id")
+    private List<Admission> admission;
+    @OneToMany
+    @JoinColumn(name="patient_id")
+    private List<Discharge> discharge;
+    @OneToOne
+    @JoinColumn(name="p_id")
     private Treatment treatmnt;
-    @Embedded
-    private Diet diet;
+    @OneToMany
+    @JoinColumn(name="patient_id")
+    private List<Diet> diet;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_id")
     private List<ActivityLog> activity;
@@ -71,10 +77,10 @@ public class Patient implements Serializable {
         private String surname;
         private int age;
         private Registration registrationFee;
-        private Admission admission;
-        private Discharge discharge;
+        private List<Admission> admission;
+        private List<Discharge> discharge;
         private Treatment treatmnt;
-        private Diet diet;
+        private List<Diet> diet;
         private List<ActivityLog> activity;
         
         public Builder(String name) {
@@ -101,12 +107,12 @@ public class Patient implements Serializable {
             return this;
         }
         
-        public Builder admission(Admission value){
+        public Builder admission(List<Admission> value){
             admission=value;
             return this;
         }
         
-        public Builder discharge(Discharge value){
+        public Builder discharge(List<Discharge> value){
             discharge=value;
             return this;
         }
@@ -116,7 +122,7 @@ public class Patient implements Serializable {
             return this;
         }
         
-        public Builder diet(Diet value){
+        public Builder diet(List<Diet> value){
             diet=value;
             return this;
         }
@@ -166,11 +172,11 @@ public class Patient implements Serializable {
         return registrationFee;
     }
 
-    public Admission getAdmission() {
+    public List<Admission> getAdmission() {
         return admission;
     }
 
-    public Discharge getDischarge() {
+    public List<Discharge> getDischarge() {
         return discharge;
     }
 
@@ -178,7 +184,7 @@ public class Patient implements Serializable {
         return treatmnt;
     }
     
-    public Diet getDiet() {
+    public List<Diet> getDiet() {
         return diet;
     }
 

@@ -28,7 +28,6 @@ import org.testng.annotations.Test;
  */
 public class NurseRepositoryTest {
     private static ApplicationContext ctx;
-    private static Shift shift;
     private Long id;
     private NurseRepository repo;
     
@@ -40,13 +39,15 @@ public class NurseRepositoryTest {
         List<Nurse> nurseList = new ArrayList();
         nurseList.add(null);
         
+        List<Shift> shiftList = new ArrayList();
+        shiftList.add(null);
+        
         repo = ctx.getBean(NurseRepository.class);
         Nurse nu1 = new Nurse.Builder(45)
                 .name("Dolly")
                 .surname("Tshintana")
                 .age(27)
                 .salary(3800)
-                .shift(shift)
                 .build();
         repo.save(nu1);
         id = nu1.getId();
@@ -70,7 +71,6 @@ public class NurseRepositoryTest {
                 .surname("Nyama")
                 .age(29)
                 .salary(4500)
-                .shift(shift)
                 .build();
         repo.save(nurse);
         
@@ -92,7 +92,6 @@ public class NurseRepositoryTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
-        shift = new Shift.Builder("Night").build();
     }
 
     @AfterClass

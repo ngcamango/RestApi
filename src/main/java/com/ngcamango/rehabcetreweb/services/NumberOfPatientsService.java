@@ -6,21 +6,13 @@
 
 package com.ngcamango.rehabcetreweb.services;
 
+import com.ngcamango.rehabcetreweb.domain.Patient;
 import java.util.List;
 
 /**
  *
  * @author ngcamango
  */
-public interface CrudService <S, ID>{
-    
-    public S find(ID id);
-
-    public S persist(S entity);
-
-    public S merge(S entity);
-
-    public S remove(S entity);
-
-    public List<S> findAll();
+public interface NumberOfPatientsService {
+    public List<Patient> getTotalPeople();
 }

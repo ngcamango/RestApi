@@ -7,15 +7,22 @@
 package com.ngcamango.rehabcetreweb.domain;
 
 import java.io.Serializable;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author ngcamango
  */
-@Embeddable
-public class Treatment implements Serializable{
-    //private String diagnosis;
+@Entity
+public class Treatment implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String treatment;
     
     private Treatment(){
@@ -57,9 +64,40 @@ public class Treatment implements Serializable{
         return diagnosis;
     }*/
 
+    /*public String getDiagnosis() {
+    return diagnosis;
+    }*/
+    public Long getId() {
+        return id;
+    }
+
     public String getTreatment() {
         return treatment;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Treatment)) {
+            return false;
+        }
+        Treatment other = (Treatment) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ngcamango.rehabcetreweb.domain.Treatment[ id=" + id + " ]";
+    }
     
 }

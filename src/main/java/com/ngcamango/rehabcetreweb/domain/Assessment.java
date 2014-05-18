@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,7 +29,8 @@ public class Assessment implements Serializable {
     private String surname;
     private int age;
     private String diagnosis;
-    @Embedded
+    @OneToOne
+    @JoinColumn(name="assessment_id")
     private Progress progress;
     @Embedded
     private Time timeElapsed;
