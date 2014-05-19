@@ -38,7 +38,7 @@ public class NumberOfPatientsTest {
          service = ctx.getBean(NumberOfPatientsService.class);
          List<Patient> patients = service.getTotalPeople();
          
-         Assert.assertEquals(11, patients.size(), " Expert no People");
+         Assert.assertEquals(13, patients.size(), " Expert no People");
      
      }
 
