@@ -7,8 +7,8 @@
 package com.ngcamango.rehabcetreweb.test.services;
 
 import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
-import com.ngcamango.rehabcetreweb.domain.Patient;
-import com.ngcamango.rehabcetreweb.services.NumberOfPatientsService;
+import com.ngcamango.rehabcetreweb.domain.Nurse;
+import com.ngcamango.rehabcetreweb.services.NumberOfNursesService;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,21 +24,20 @@ import org.testng.annotations.Test;
  *
  * @author ngcamango
  */
-public class NumberOfPatientsTest {
-    
+public class NumberOfNursesServiceTest {
     public static ApplicationContext ctx;
     
-    private NumberOfPatientsService service;
+    private NumberOfNursesService service;
     
-    public NumberOfPatientsTest() {
+    public NumberOfNursesServiceTest() {
     }
 
     @Test
-     public void total() {
-         service = ctx.getBean(NumberOfPatientsService.class);
-         List<Patient> patients = service.getTotalPeople();
+     public void totalNurses() {
+         service = ctx.getBean(NumberOfNursesService.class);
+         List<Nurse> nurses = service.getTotalNurses();
          
-         Assert.assertEquals(13, patients.size(), " 13 Patients");
+         Assert.assertEquals(3, nurses.size(), " 3 Nurses");
      
      }
 

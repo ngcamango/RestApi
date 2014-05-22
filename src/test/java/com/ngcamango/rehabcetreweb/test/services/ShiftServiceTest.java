@@ -7,8 +7,9 @@
 package com.ngcamango.rehabcetreweb.test.services;
 
 import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
-import com.ngcamango.rehabcetreweb.domain.Patient;
-import com.ngcamango.rehabcetreweb.services.NumberOfPatientsService;
+import com.ngcamango.rehabcetreweb.domain.Shift;
+import com.ngcamango.rehabcetreweb.repository.ShiftRepository;
+import com.ngcamango.rehabcetreweb.services.ShiftService;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,23 +25,23 @@ import org.testng.annotations.Test;
  *
  * @author ngcamango
  */
-public class NumberOfPatientsTest {
-    
+public class ShiftServiceTest {
     public static ApplicationContext ctx;
+    private ShiftService shiftService;
+    private ShiftRepository shiftRepository;
     
-    private NumberOfPatientsService service;
-    
-    public NumberOfPatientsTest() {
+    public ShiftServiceTest() {
     }
 
     @Test
-     public void total() {
-         service = ctx.getBean(NumberOfPatientsService.class);
-         List<Patient> patients = service.getTotalPeople();
-         
-         Assert.assertEquals(13, patients.size(), " 13 Patients");
-     
-     }
+    public void getShiftss() {
+        shiftRepository = ctx.getBean(ShiftRepository.class);
+        shiftService = ctx.getBean(ShiftService.class);
+        
+        List<Shift> shift = shiftService.getShiftss("Early");
+        
+        Assert.assertEquals(shift.size(), 0);
+    }
 
     @BeforeClass
     public static void setUpClass() throws Exception {

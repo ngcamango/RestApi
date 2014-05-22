@@ -7,8 +7,8 @@
 package com.ngcamango.rehabcetreweb.test.services;
 
 import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
-import com.ngcamango.rehabcetreweb.domain.Patient;
-import com.ngcamango.rehabcetreweb.services.NumberOfPatientsService;
+import com.ngcamango.rehabcetreweb.domain.NextOfKin;
+import com.ngcamango.rehabcetreweb.services.NextOfKinService;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,21 +24,20 @@ import org.testng.annotations.Test;
  *
  * @author ngcamango
  */
-public class NumberOfPatientsTest {
-    
+public class NextOfKinServiceTest {
     public static ApplicationContext ctx;
     
-    private NumberOfPatientsService service;
+    private NextOfKinService service;
     
-    public NumberOfPatientsTest() {
+    public NextOfKinServiceTest() {
     }
 
     @Test
-     public void total() {
-         service = ctx.getBean(NumberOfPatientsService.class);
-         List<Patient> patients = service.getTotalPeople();
+     public void totalNextOfKin() {
+         service = ctx.getBean(NextOfKinService.class);
+         List<NextOfKin> nextOfKin = service.getTotal();
          
-         Assert.assertEquals(13, patients.size(), " 13 Patients");
+         Assert.assertEquals(7, nextOfKin.size(), " ....");
      
      }
 

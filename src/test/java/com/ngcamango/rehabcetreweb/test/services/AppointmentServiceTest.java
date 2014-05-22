@@ -44,7 +44,7 @@ public class AppointmentServiceTest {
         nextOfKinRepository = ctx.getBean(NextOfKinRepository.class);
         appointmentService = ctx.getBean(AppointmentService.class);
         
-        List<Appointment> appointmentList = new ArrayList<>();
+        /*List<Appointment> appointmentList = new ArrayList<>();
         appointmentList.add(null);
         
         NextOfKin n1 = new NextOfKin.Builder("Mel")
@@ -57,12 +57,12 @@ public class AppointmentServiceTest {
                 .build();
         
         nextOfKinRepository.save(n1);
-        /*patientRepository.save(pat2);
+        patientRepository.save(pat2);
         patientRepository.save(pat3);*/
         
         List<NextOfKin> nextOfKin = appointmentService.getAppointment("Mel");
         
-        Assert.assertEquals(nextOfKin.size(), 1);
+        Assert.assertEquals(nextOfKin.size(), 4);
     }
 
     @BeforeClass

@@ -41,7 +41,7 @@ public class PatientAgeServiceTest {
     public PatientAgeServiceTest() {
     }
     
-    @Test
+    @Test(enabled=false)
     public void getPatientAge() {
         patientRepository = ctx.getBean(PatientRepository.class);
         patientAgeService = ctx.getBean(PatientAgeService.class);

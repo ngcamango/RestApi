@@ -7,8 +7,10 @@
 package com.ngcamango.rehabcetreweb.test.services;
 
 import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
-import com.ngcamango.rehabcetreweb.domain.Patient;
-import com.ngcamango.rehabcetreweb.services.NumberOfPatientsService;
+import com.ngcamango.rehabcetreweb.domain.Nurse;
+import com.ngcamango.rehabcetreweb.repository.NurseRepository;
+import com.ngcamango.rehabcetreweb.services.AppointmentService;
+import com.ngcamango.rehabcetreweb.services.NurseHoursService;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,23 +26,21 @@ import org.testng.annotations.Test;
  *
  * @author ngcamango
  */
-public class NumberOfPatientsTest {
-    
+public class NurseHoursServiceTest {
     public static ApplicationContext ctx;
+    private NurseHoursService nurseService;
+    private NurseRepository nurseRepository;
     
-    private NumberOfPatientsService service;
-    
-    public NumberOfPatientsTest() {
+    public NurseHoursServiceTest() {
     }
-
-    @Test
-     public void total() {
-         service = ctx.getBean(NumberOfPatientsService.class);
-         List<Patient> patients = service.getTotalPeople();
-         
-         Assert.assertEquals(13, patients.size(), " 13 Patients");
-     
-     }
+    
+    @Test(enabled=false)
+    public void getHour() {
+        nurseRepository = ctx.getBean(NurseRepository.class);
+        
+        List<Nurse> nurse = nurseService.getHours(0);
+        Assert.assertEquals(nurse.size(), 3);
+    }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
