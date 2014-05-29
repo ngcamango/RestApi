@@ -6,6 +6,7 @@
 
 package com.ngcamango.rehabcetreweb.services.impl;
 
+import com.ngcamango.rehabcetreweb.services.PatientProgressService;
 import com.ngcamango.rehabcetreweb.domain.Progress;
 import com.ngcamango.rehabcetreweb.repository.ProgressRepository;
 import java.util.List;

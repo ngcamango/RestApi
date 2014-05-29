@@ -4,15 +4,14 @@
  * and open the template in the editor.
  */
 
-package com.ngcamango.rehabcetreweb.services.impl;
+package com.ngcamango.rehabcetreweb.services;
 
-import com.ngcamango.rehabcetreweb.domain.Progress;
-import java.util.List;
+import com.ngcamango.rehabcetreweb.domain.Diet;
 
 /**
  *
  * @author ngcamango
  */
-public interface PatientProgressService {
-    public List<Progress> getProgression();
+public interface DietService extends Services<Diet, Long>{
+    
 }

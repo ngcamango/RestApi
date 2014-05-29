@@ -6,7 +6,7 @@
 
 package com.ngcamango.rehabcetreweb.test.repository;
 
-import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
+import com.ngcamango.rehabcetreweb.test.ConnectionConfigTest;
 import com.ngcamango.rehabcetreweb.domain.ActivityLog;
 import com.ngcamango.rehabcetreweb.domain.Admission;
 import com.ngcamango.rehabcetreweb.domain.Diet;
@@ -41,7 +41,7 @@ public class PatientRepositoryTest {
     public PatientRepositoryTest() {
     }
 
-    @Test
+    @Test (enabled = true)
     public void createPatient() {
         List<ActivityLog> activityList = new ArrayList();
         activityList.add(null);
@@ -71,14 +71,14 @@ public class PatientRepositoryTest {
         Assert.assertNotNull(id);
     }
     
-    @Test(dependsOnMethods = "createPatient")
+    @Test(dependsOnMethods = "createPerson", enabled = true)
     public void readPatient() {
         repo = ctx.getBean(PatientRepository.class);
         Patient patient = repo.findOne(id);
         Assert.assertEquals(patient.getName(), "Ngcamango");
     }
     
-    @Test(dependsOnMethods = "readPatient")
+    @Test(dependsOnMethods = "readPerson", enabled = true)
     public void updatePatient() {
         repo = ctx.getBean(PatientRepository.class);
         Patient patient;
@@ -99,7 +99,7 @@ public class PatientRepositoryTest {
         Assert.assertEquals(updatePatient.getName(), "Ngcamango");
     }
     
-    @Test(dependsOnMethods = "updatePatient")
+    @Test(dependsOnMethods = "updatePerson",enabled = true)
     public void deletePatient() {
         repo = ctx.getBean(PatientRepository.class);
         Patient patient = repo.findOne(id);
@@ -112,7 +112,7 @@ public class PatientRepositoryTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);
         treatment = new Treatment.Builder("Vitamins").build();
         registrationFee = new Registration.Builder(2000.00).build();
     }

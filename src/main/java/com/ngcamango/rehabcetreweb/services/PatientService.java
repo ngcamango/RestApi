@@ -6,21 +6,12 @@
 
 package com.ngcamango.rehabcetreweb.services;
 
-import java.util.List;
+import com.ngcamango.rehabcetreweb.domain.Patient;
 
 /**
  *
  * @author ngcamango
  */
-public interface Services <S, ID>{
+public interface PatientService extends Services<Patient, Long>{
     
-    public S find(ID id);
-
-    public S persist(S entity);
-
-    public S merge(S entity);
-
-    public void remove(S entity);
-
-    public List<S> findAll();
 }

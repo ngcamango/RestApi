@@ -8,7 +8,7 @@ package com.ngcamango.rehabcetreweb.test.services;
 
 import com.ngcamango.rehabcetreweb.app.config.ConnectionConfig;
 import com.ngcamango.rehabcetreweb.domain.Progress;
-import com.ngcamango.rehabcetreweb.services.impl.PatientProgressService;
+import com.ngcamango.rehabcetreweb.services.PatientProgressService;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
